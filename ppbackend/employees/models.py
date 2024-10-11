@@ -7,7 +7,7 @@ REALTOR_IMAGE = "ar/realtors/"
 
 
 def generate_id():
-    return generate(size=21)  # Adjust size if needed
+    return generate(size=21)
 
 
 class Employee(models.Model):
@@ -15,7 +15,7 @@ class Employee(models.Model):
         _("id"), default=generate_id, editable=False, max_length=21, primary_key=True
     )
     full_name = models.CharField(_("full name"), max_length=100)
-    phone_number = models.CharField(max_length=22)
+    phone_number = models.CharField(unique=True, max_length=22)
     email = models.EmailField(unique=True, max_length=254)
     avatar = models.ImageField(blank=True, upload_to=REALTOR_IMAGE)
     is_mvp = models.BooleanField(default=False)
