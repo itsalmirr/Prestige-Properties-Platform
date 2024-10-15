@@ -31,6 +31,7 @@ class LoginUserAPIView(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
         token, created = Token.objects.get_or_create(user=user)
+        print(token)
         return Response(
             {
                 "user": {
